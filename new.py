@@ -21,3 +21,11 @@ st.markdown('''
             3. ordered item
             ''')
 st.divider() # 구분선
+
+# 사이드바
+st.header('---- 사이드바')
+st.sidebar.write('## 사이드바 텍스트')
+st.sidebar.checkbox('체크박스1')
+st.sidebar.checkbox('체크박스2')
+st.sidebar.radio('라디오 버튼', ['radio 1', 'radio 2', 'radio 3'])
+st.sidebar.selectbox('셀렉트 박스', ['select 1', 'select 2', 'select 3'])
