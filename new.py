@@ -36,16 +36,7 @@ import pandas as pd
 df = pd.DataFrame({'A':[1,2,3],'B':[4,5,6]})
 df # 데이터프레임 출력
 
-#차트.
-import matplotlib.pyplot as plt
-import numpy as np
 
-x= np.linspace(0,10,100)
-y=np.sin(x)
-
-fig,ax = plt.subplots()
-ax.plot(x,y)
-fig # 차트출력
 
 
 # 사이드바 추가!--------------------------
