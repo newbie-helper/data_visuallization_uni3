@@ -33,7 +33,7 @@ st.divider() # 구분선
 '''
 # 데이터프레임
 import pandas as pd
-df = pd.FataFrame({'A':[1,2,3],'B':[4,5,6]})
+df = pd.DataFrame({'A':[1,2,3],'B':[4,5,6]})
 df # 데이터프레임 출력
 
 #차트
