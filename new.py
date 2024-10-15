@@ -48,3 +48,19 @@ with col_2:
 col_3.write('## 3번 컬럼')
 col_3.selectbox('3번 칼럼의 셀렉트 박스', ['select 1', 'select 2','select 3'])
 # 사이드바에 이미 셀렉트박스가 생성되어 있기 때문에, 여기서는 셀렉트박스의 내용을 변경해야 오류가 발생하지 않음
+
+# 레이아웃: 탭
+st.header('탭 레이아웃')
+
+# 탭 인스턴스 생성. 3개의 탭을 생성
+tab_1, tab_2,tab_3 = st.tabs(['탭AAAAA','탭BBBBB','탭CCCCC'])
+with tab_1:
+    st.write('## 탭AAAAA')
+    st.write('이것은 탭A의 내용입니다.')
+
+with tab_2:
+    st.write('## 탭BBBBB')
+    st.write('이것은 탭B의 내용입니다.')
+
+tab_3.write('## 탭CCCCC')
+tab_3.write('이것은 탭C의 내용입니다.')
