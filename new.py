@@ -22,20 +22,6 @@ st.markdown('''
             ''')
 st.divider() # 구분선
 
-# Stremlit Magic!-------------------------
-# 마크다운
-'''# Magic에 마크다운을 조합
-1. ordered item
-    - 강조: **unordered item**
-    - 기울기: *unordered item*
-2. ordered item
-3. ordered item
-'''
-# 데이터프레임
-import pandas as pd
-df = pd.DataFrame({'A':[1,2,3],'B':[4,5,6]})
-df # 데이터프레임 출력
-
 # 사이드바 추가!--------------------------
 st.header('---- 사이드바')
 st.sidebar.write('## 사이드바 텍스트')
