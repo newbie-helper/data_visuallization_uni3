@@ -64,3 +64,28 @@ with tab_2:
 
 tab_3.write('## 탭CCCCC')
 tab_3.write('이것은 탭C의 내용입니다.')
+
+# Stremlit Magic!-------------------------
+# 마크다운
+'''# Magic에 마크다운을 조합
+1. ordered item
+    - 강조: **unordered item**
+    - 기울기: *unordered item*
+2. ordered item
+3. ordered item
+'''
+# 데이터프레임
+import pandas as pd
+df = pd.DataFrame({'A':[1,2,3],'B':[4,5,6]})
+df # 데이터프레임 출력
+
+#차트
+import matplotlib.pyplot as plt
+import numpy as np
+
+x= np.linspace(0,10,100)
+y=np.sin(x)
+
+fig,ax = plt.subplots()
+ax.plot(x,y)
+fig # 차트출력
