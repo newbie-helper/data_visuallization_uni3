@@ -30,7 +30,7 @@ st.sidebar.checkbox('체크박스2')
 st.sidebar.radio('라디오 버튼', ['radio 1', 'radio 2', 'radio 3'])
 st.sidebar.selectbox('셀렉트 박스', ['select 1', 'select 2', 'select 3'])
 
-#Layout --------------------------------
+#Layout -------------------------------
 # 레이아웃: 컬럼
 st.header('컬럼 레이아웃')
 col_1,col_2,col_3=st.columns([1,2,1]) # 컬럼 인스턴스 생성. 1:2:1 비율로 컬럼을 나눔
