@@ -26,3 +26,18 @@ st.write(f'선택된 날짜: {date}')
 st.write('#### :orange[시간입력]')
 time = st.time_input('시간을 선택하세요', help='weee',step =600)
 st.write(f'선택된 시간:{time}')
+
+# 파일 업로드는 업로드된 파일을 반환
+st.write('#### :orange[파일업로드]')
+file = st.file_uploader('파일을 업로드하세요')
+if file:
+  st.write(f'업로드된 파일: {file}')
+
+#체크박스, 라디오 버튼, 셀렉트 박스, 멀티 셀렉트 박스 ================
+st.header(' :blue[체크박스, 라디오 버튼, 셀렉트 박스, 멀티 셀렉트 박스]')
+
+#체크박스는 True/False 값을 반환
+st.write('#### :orange[체크박스]')
+check = st.checkbox('여기를 체크하세요')
+if check:
+  st.write('#### :orange[체크 박스]')
