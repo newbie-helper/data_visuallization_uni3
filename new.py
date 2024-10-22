@@ -89,3 +89,4 @@ y=np.sin(x)
 fig,ax = plt.subplots()
 ax.plot(x,y)
 fig # 차트출력
+
