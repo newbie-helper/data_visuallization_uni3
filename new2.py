@@ -13,7 +13,7 @@ st.write(f'입력된 텍스트:{text}')
 
 #숫자 입력은 입력된 값을 변환
 
-st.write('#### : orange[날짜 입력]')
+st.write('#### : orange[숫자 입력]')
 number = st.number_input('여기에 숫자를 입력하세요')
 st.write(f'입력된 숫자:{number}')
 
