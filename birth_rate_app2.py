@@ -4,6 +4,21 @@ import geopandas as gpd
 import folium
 from streamlit_folium import st_folium
 
+# 출생율 데이터 전처리
+import pandas as pd # pandas 라이브러리 불러오기
+url = 'C:/Users/USER/Desktop/홍대/3-2/데이터시각화/과제/전국 시군구 출산율 시각화/'
+df_birth_rate = pd.read_excel(url+'행정구역별출산율.xlsx',header=1)
+df_birth_rate.columns = ['행정구','출산율'] # 컬럼명 변경
+# 출생율 데이터 공백제거
+df_birth_rate['행정구'] = df_birth_rate['행정구'].str.replace('\u3000', '', regex=False)
+
+### 서울지도 데이터 전처리
+import geopandas as gpd 
+# geopandas 라이브러리 불러오기
+# geopandas의 read_file 함수로 데이터 불러오기
+gdf_seoul_gu = gpd.read_file('C:/Users/USER/Desktop/홍대/3-2/데이터시각화/자료/전국지도/서울지도/서울지도.json')
+gdf_seoul_gu['행정구'] = gdf_seoul_gu['SGG_NM'].str.replace('서울특별시 ','') 
+
 # Streamlit 앱 제목
 st.title("시군구 기준 합계출산율 Choropleth 지도")
 
@@ -15,22 +30,7 @@ title = "전국 출산율 지도"
 geojson_combined = {
     "type": "FeatureCollection",
     "features": (
-        gdf_seoul_gu.__geo_interface__["features"] +
-        df_Gyeonggi.__geo_interface__["features"] +
-        gdf_incheon.__geo_interface__["features"] +
-        gdf_Gangwon.__geo_interface__["features"] +
-        gdf_chungbuk.__geo_interface__["features"] +
-        gdf_chungnam.__geo_interface__["features"] +
-        gdf_Daejeon.__geo_interface__["features"] +
-        gdf_sejong.__geo_interface__["features"] +
-        gdf_Jeonbuk.__geo_interface__["features"] +
-        gdf_Jeonnam.__geo_interface__["features"] +
-        gdf_Gwangju.__geo_interface__["features"] +
-        gdf_Gyeongsangbuk.__geo_interface__["features"] +
-        gdf_daegu.__geo_interface__["features"] +
-        gdf_Gyeongnam.__geo_interface__["features"] +
-        gdf_Ulsan.__geo_interface__["features"] +
-        gdf_busan.__geo_interface__["features"]
+        gdf_seoul_gu.__geo_interface__["features"] 
     )
 }
 
