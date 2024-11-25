@@ -7,3 +7,4 @@ fiona
 numpy
 pandas
 streamlit_folium
+openpyxl
