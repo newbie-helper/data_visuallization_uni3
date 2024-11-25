@@ -2,9 +2,6 @@ geopandas
 streamlit
 pandas
 folium
-shapely
-fiona
-pyproj
 numpy
 matplotlib
-streamlit_folium
+
