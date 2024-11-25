@@ -18,6 +18,77 @@ import geopandas as gpd
 gdf_seoul_gu = gpd.read_file('data/서울지도.json')
 gdf_seoul_gu['행정구'] = gdf_seoul_gu['SGG_NM'].str.replace('서울특별시 ','') 
 
+
+### 경기도 데이터 전처리
+df_Gyeonggi = gpd.read_file('data/경기도지도.json')
+df_Gyeonggi['행정구'] = df_Gyeonggi['SGG_NM'].str.replace('경기도 ','')
+df_Gyeonggi['행정구'] = (df_Gyeonggi['행정구']
+                      .str.replace('수원시 ','')
+                      .str.replace('성남시 ','')
+                      .str.replace('안양시 ','')
+                      .str.replace('안산시 ','')
+                      .str.replace('고양시 ','')
+                      .str.replace('용인시 ','')
+                      .str.replace(' 원미구','')
+                      .str.replace(' 소사구','')
+                      .str.replace(' 오정구',''))
+
+### 인천 지도 데이터 전처리
+gdf_incheon = gpd.read_file('data/인천지도.json')
+gdf_incheon['행정구'] = gdf_incheon['SGG_NM'].str.replace('인천광역시 ','')
+gdf_incheon['행정구'] = gdf_incheon['행정구'].str.replace('중구','인천-중구')
+gdf_incheon['행정구'] = gdf_incheon['행정구'].str.replace(r'^동구$','인천-동구') # ^동구$ (^: 문자열의 시작. | 동구: 정확히 "동구".|$: 문자열의 끝.)
+gdf_incheon['행정구'] = gdf_incheon['행정구'].str.replace('서구','인천-서구')
+
+### 강원도 지도 데이터 전처리
+gdf_Gangwon = gpd.read_file('data/강원도지도.json')
+gdf_Gangwon['행정구'] = gdf_Gangwon['SGG_NM'].str.replace('강원특별자치도 ','')
+
+
+### 충북 지도 데이터전처리
+gdf_chungbuk = gpd.read_file('data/충북지도.json')
+gdf_chungbuk['행정구'] = (gdf_chungbuk['SGG_NM']
+                       .str.replace('충청북도 ','')
+                       .str.replace(' 상당구','')
+                       .str.replace(' 서원구','')
+                       .str.replace(' 흥덕구','')
+                       .str.replace(' 청원구',''))
+
+### 충남 지도 데이터 전처리
+gdf_chungnam = gpd.read_file('data/충남지도.json')
+gdf_chungnam['행정구'] = (gdf_chungnam['SGG_NM']
+                       .str.replace('충청남도 ','')
+                       .str.replace('천안시 동남구|천안시 서북구', '천안시',regex=True)
+                      )
+
+### 대전 지도 데이터 전처리
+gdf_Daejeon = gpd.read_file('data/대전지도.json')
+gdf_Daejeon['행정구'] = (gdf_Daejeon['SGG_NM']
+                      .str.replace('대전광역시 ','')
+                      .str.replace('동구','대전-동구')
+                     .str.replace('중구','대전-중구')
+                     .str.replace('서구','대전-서구'))
+
+
+### 세종 지도 데이터 전처리
+gdf_sejong = gpd.read_file('data/세종지도.json')
+gdf_sejong['행정구'] =gdf_sejong['SGG_NM']
+
+### 전북 지도 데이터 전처리
+gdf_Jeonbuk = gpd.read_file('data/전북지도.json')
+gdf_Jeonbuk['행정구'] = (gdf_Jeonbuk['SGG_NM']
+                      .str.replace('전북특별자치도 ','')
+                      .str.replace('전주시 완산구|전주시 덕진구','전주시',regex=True)) 
+
+### 전남 지도 데이터 전처리
+gdf_Jeonnam = gpd.read_file('data/전남지도.json')
+gdf_Jeonnam['행정구'] = gdf_Jeonnam['SGG_NM'].str.replace('전라남도 ','')
+
+
+### 광주 지도 데이터 전처리
+
+
+
 # Streamlit 앱 제목
 st.title("시군구 기준 합계출산율 Choropleth 지도")
 
