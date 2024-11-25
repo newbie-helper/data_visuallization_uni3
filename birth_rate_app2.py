@@ -20,9 +20,9 @@ gdf_seoul_gu['행정구'] = gdf_seoul_gu['SGG_NM'].str.replace('서울특별시 
 
 
 ### 경기도 데이터 전처리
-df_Gyeonggi = gpd.read_file('data/경기도지도.json')
-df_Gyeonggi['행정구'] = df_Gyeonggi['SGG_NM'].str.replace('경기도 ','')
-df_Gyeonggi['행정구'] = (df_Gyeonggi['행정구']
+gdf_Gyeonggi = gpd.read_file('data/경기도지도.json')
+gdf_Gyeonggi['행정구'] = df_Gyeonggi['SGG_NM'].str.replace('경기도 ','')
+gdf_Gyeonggi['행정구'] = (df_Gyeonggi['행정구']
                       .str.replace('수원시 ','')
                       .str.replace('성남시 ','')
                       .str.replace('안양시 ','')
@@ -86,6 +86,60 @@ gdf_Jeonnam['행정구'] = gdf_Jeonnam['SGG_NM'].str.replace('전라남도 ','')
 
 
 ### 광주 지도 데이터 전처리
+gdf_Gwangju = gpd.read_file('data/광주지도.json')
+gdf_Gwangju['행정구'] = (gdf_Gwangju['SGG_NM']
+                      .str.replace('광주광역시 ','')
+                      .str.replace('동구','광주-동구')
+                      .str.replace('서구','광주-서구')
+                      .str.replace('남구','광주-남구')
+                      .str.replace('북구','광주-북구'))
+
+### 경북 지도 데이터 전처리
+gdf_Gyeongsangbuk = gpd.read_file('data/경북지도.json')
+gdf_Gyeongsangbuk['행정구'] = (gdf_Gyeongsangbuk['SGG_NM']
+                            .str.replace('경상북도 ','')
+                            .str.replace('포항시 남구','포항-남구')
+                            .str.replace('포항시 북구','포항-북구'))
+
+
+### 대구 지도 데이터 전처리
+gdf_daegu = gpd.read_file('data/대구지도.json')
+gdf_daegu['행정구'] = (gdf_daegu['SGG_NM']
+                    .str.replace('대구광역시 ','')
+                    .str.replace('중구','대구-중구')
+                    .str.replace('동구','대구-동구')
+                    .str.replace(r'^서구$','대구-서구',regex=True)
+                    .str.replace('남구','대구-남구')
+                    .str.replace('북구','대구-북구'))
+
+### 경남 지도 데이터 전처리
+gdf_Gyeongnam = gpd.read_file('data/경남지도.json')
+gdf_Gyeongnam['행정구'] = (gdf_Gyeongnam['SGG_NM']
+                        .str.replace('경상남도 ','')
+                        .str.replace('창원시 ',''))
+
+### 울산 지도 데이터 전처리
+gdf_Ulsan = gpd.read_file('data/울산지도.json')
+gdf_Ulsan['행정구'] = (gdf_Ulsan['SGG_NM'].str.replace('울산광역시 ','')
+                    .str.replace('중구','울산-중구')
+                    .str.replace('남구','울산-남구')
+                    .str.replace('동구','울산-동구')
+                    .str.replace('북구','울산-북구'))
+
+### 부산 지도 데이터 전처리
+gdf_busan = gpd.read_file('data/부산지도.json')
+gdf_busan['행정구'] = (gdf_busan['SGG_NM']
+                    .str.replace('부산광역시 ','')
+                    .str.replace('중구','부산-중구')
+                    .str.replace('강서','부산-강서'))
+
+
+
+
+
+
+
+
 
 
 
@@ -100,7 +154,22 @@ title = "전국 출산율 지도"
 geojson_combined = {
     "type": "FeatureCollection",
     "features": (
-        gdf_seoul_gu.__geo_interface__["features"] 
+        gdf_seoul_gu.__geo_interface__["features"] +
+        gdf_Gyeonggi.__geo_interface__["features"] +
+        gdf_incheon.__geo_interface__["features"] +
+        gdf_Gangwon.__geo_interface__["features"] +
+        gdf_chungbuk.__geo_interface__["features"]+
+        gdf_chungnam.__geo_interface__["features"]+
+        gdf_Daejeon.__geo_interface__["features"]+
+        gdf_sejong.__geo_interface__["features"]+
+        gdf_Jeonbuk.__geo_interface__["features"]+
+        gdf_Jeonnam.__geo_interface__["features"]+
+        gdf_Gwangju.__geo_interface__["features"]+
+        gdf_Gyeongsangbuk.__geo_interface__["features"]+
+        gdf_daegu.__geo_interface__["features"]+
+        gdf_Gyeongnam.__geo_interface__["features"]+
+        gdf_Ulsan.__geo_interface__["features"]+
+        gdf_busan.__geo_interface__["features"]
     )
 }
 
