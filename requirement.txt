@@ -7,3 +7,4 @@ fiona
 pyproj
 numpy
 matplotlib
+streamlit_folium
