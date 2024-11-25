@@ -7,4 +7,3 @@ fiona
 numpy
 matplotlib
 pandas
-numpy
