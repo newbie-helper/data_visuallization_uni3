@@ -21,8 +21,8 @@ gdf_seoul_gu['행정구'] = gdf_seoul_gu['SGG_NM'].str.replace('서울특별시 
 
 ### 경기도 데이터 전처리
 gdf_Gyeonggi = gpd.read_file('data/경기도지도.json')
-gdf_Gyeonggi['행정구'] = df_Gyeonggi['SGG_NM'].str.replace('경기도 ','')
-gdf_Gyeonggi['행정구'] = (df_Gyeonggi['행정구']
+gdf_Gyeonggi['행정구'] = gdf_Gyeonggi['SGG_NM'].str.replace('경기도 ','')
+gdf_Gyeonggi['행정구'] = (gdf_Gyeonggi['행정구']
                       .str.replace('수원시 ','')
                       .str.replace('성남시 ','')
                       .str.replace('안양시 ','')
