@@ -4,4 +4,3 @@ pandas
 folium
 numpy
 matplotlib
-
