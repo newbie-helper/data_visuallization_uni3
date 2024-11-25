@@ -5,6 +5,4 @@ folium
 shapely
 fiona
 numpy
-matplotlib
 pandas
-ㅌㅌㅌ
