@@ -1,8 +1,10 @@
+geopandas
 streamlit
-geopandas==0.13.3
-shapely==2.0.1
-fiona>=1.9.0
-pyproj==3.6.0
-pandas>=1.3.0
+pandas
+folium
+shapely
+fiona
 numpy
 matplotlib
+pandas
+numpy
