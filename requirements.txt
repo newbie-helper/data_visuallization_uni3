@@ -8,3 +8,4 @@ numpy
 pandas
 streamlit_folium
 openpyxl
+matplotlib
