@@ -14,7 +14,7 @@ st.set_page_config(
     initial_sidebar_state="expanded")
 
 #1 인구추이 데이터 로드/ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!개인 디렉토리에 맞게 url 수정!!
-url = 'C:/Users/USER/Desktop/홍대/3-2/데이터시각화/과제/기말개인과제/'
+url = 'data/'
 df_reshaped = pd.read_excel(url+'2014_2023인구추이_전처리.xlsx')
     
 #2 korea_geojson 지도 데이터로드/ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!1!!!개인파일 이름에 맞게 지도데이터 이름 수정!!!
