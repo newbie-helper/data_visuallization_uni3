@@ -5,14 +5,6 @@ import plotly.express as px
 import json
 
 
-
-# 사이트 이름 지정
-st.set_page_config(
-    page_title="Korea Population Dashboard",
-    page_icon="🏂",
-    layout="wide",
-    initial_sidebar_state="expanded")
-
 #1 인구추이 데이터 로드/ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!개인 디렉토리에 맞게 url 수정!!
 url = 'data/'
 df_reshaped = pd.read_excel(url+'2014_2023인구추이_전처리.xlsx')
@@ -26,7 +18,12 @@ category_list =list(df_reshaped.category.unique())
 
 
 ###############################################################
-
+# 사이트 이름 지정
+st.set_page_config(
+    page_title="Korea Population Dashboard",
+    page_icon="🏂",
+    layout="wide",
+    initial_sidebar_state="expanded")
 
 # 각 페이지에 해당하는 함수 정의
 
