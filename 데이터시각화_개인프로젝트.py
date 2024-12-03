@@ -7,7 +7,7 @@ import altair as alt
 import plotly.express as px
 import json
 
-
+url = 'data/'
 #######################
 # 데이터 불러오기
 df_reshaped = pd.read_csv(url+'201412_202312_korea_population_year_UTF8.csv', encoding='UTF-8') # csv 파일 불러오기
