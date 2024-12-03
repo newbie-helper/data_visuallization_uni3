@@ -16,7 +16,7 @@ korea_geojson = json.load(open(url+'전국지도.json',encoding="UTF-8"))
 year_list = list(df_reshaped.year.unique())[::-1]
 category_list =list(df_reshaped.category.unique())
 
-
+alt.themes.enable('dark')
 ###############################################################
 # 사이트 이름 지정
 st.set_page_config(
@@ -181,9 +181,7 @@ def visualization_page():
         visible=False
         )
         choropleth.update_layout(
-            
-            plot_bgcolor='rgba(0, 0, 0, 0)',
-            paper_bgcolor='rgba(0, 0, 0, 0)',
+            template='plotly_dark',
             margin=dict(l=0, r=0, t=0, b=0),
             height=350
         )
