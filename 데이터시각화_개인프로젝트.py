@@ -1,3 +1,5 @@
+# c222079 /  김민수 / 배포링크 : https://hndvg5vxfubfjdpap7t92t.streamlit.app/
+
 import streamlit as st
 import pandas as pd
 import altair as alt
@@ -5,17 +7,19 @@ import plotly.express as px
 import json
 
 
+
 #1 인구추이 데이터 로드/ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!개인 디렉토리에 맞게 url 수정!!
-url = 'data/'
+url = 'C:/Users/USER/Desktop/홍대/3-2/데이터시각화/과제/기말개인과제/'
 df_reshaped = pd.read_excel(url+'2014_2023인구추이_전처리.xlsx')
-    
-#2 korea_geojson 지도 데이터로드/ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!1!!!개인파일 이름에 맞게 지도데이터 이름 수정!!!
+############################################################################## url 수정해주세요!
+
+#2 korea_geojson 지도 데이터로드
 korea_geojson = json.load(open(url+'전국지도.json',encoding="UTF-8"))
 
 #3 연도 및 카테고리 리스트
 year_list = list(df_reshaped.year.unique())[::-1]
 category_list =list(df_reshaped.category.unique())
-alt.themes.enable('dark')
+
 
 ###############################################################
 # 사이트 이름 지정
@@ -25,9 +29,10 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded")
 
+
 # 각 페이지에 해당하는 함수 정의
 
-### 메인 페이지!
+###########1 메인 페이지!
 def main_page():
 
     st.title("📊 대한민국 인구 대시보드")
@@ -86,10 +91,10 @@ def main_page():
     )
     st.plotly_chart(map_fig_preview, use_container_width=True)
 
-######### 시각화 페이지
+#########2 시각화 페이지
 def visualization_page():
     st.sidebar.title("📈 시각화 설정")
-    
+
 
 # 함수정의
 
@@ -160,19 +165,19 @@ def visualization_page():
         )
         return plot_bg + plot +text
 
-##4 지도 함수
-    def make_choropleth(input_df, input_id, input_column, input_color_theme):
-        choropleth = px.choropleth_mapbox(input_df, 
-                                   locations=input_id, 
+##4 Choropleth map(지도 함수)
+    def make_choropleth(input_df, input_gj input_column, input_color_theme):
+        choropleth = px.choropleth_mapbox(input_df,
+                                   geojson=input_gj,
+                                   locations='code', 
                                    color=input_column, 
                                    color_continuous_scale=input_color_theme,
                                    geojson=korea_geojson,
-                                   featureidkey='properties.BJCD',
-                                   range_color=(0, max(df_all.population)),
+                                   featureidkey='properties.CTPRVN_CD',
+                                   range_color=(0, max(input_df.population)),
                                    center = {'lat':35.9,'lon':126.98},
-                                   mapbox_style='carto-positron',
+                                   mapbox_style='carto-darkmatter',
                                    zoom=5,
-                                   opacity=0.6,
                                    labels={'population':f'{selected_category}','code':'시도코드','city':'시도명'},
                                    hover_data=['city','population']
                                   )
@@ -182,6 +187,8 @@ def visualization_page():
         )
         choropleth.update_layout(
             template='plotly_dark',
+            plot_bgcolor='rgba(0, 0, 0, 0)',
+            paper_bgcolor='rgba(0, 0, 0, 0)',
             margin=dict(l=0, r=0, t=0, b=0),
             height=350
         )
@@ -227,7 +234,6 @@ def visualization_page():
 
 
 #4 사이드바 구현
-
     with st.sidebar:
         st.title('🏂 대한민국 인구 대시보드')
     
@@ -243,7 +249,7 @@ def visualization_page():
         df_all_sorted = df_all.sort_values(by='population', ascending = False)
 
         color_theme_list = ['blues', 'cividis', 'greens', 'inferno', 'magma', 'plasma', 'reds', 'rainbow', 'turbo', 'viridis']
-        selected_color_theme = st.selectbox('컬러 테마 선택택', color_theme_list)
+        selected_color_theme = st.selectbox('컬러 테마 선택', color_theme_list)
 
     #5. 인구증감, 도넛 그래프 구현(col1)
     col = st.columns((1.5, 4.5, 2), gap='medium')
@@ -276,20 +282,20 @@ def visualization_page():
         st.markdown('#### 변동 시도 비율')
     
         if selected_year > 2014:
-            # 변동 5000이상 지역
+            # Filter cities with population difference > 5000
             df_greater_5000 = df_population_difference_sorted[df_population_difference_sorted.population_diff > 5000]
             df_less_5000 = df_population_difference_sorted[df_population_difference_sorted.population_diff < -5000]
 
-            #변동지역 표시
+            # % of cities with population difference > 5000
             city_migration_greater = round((len(df_greater_5000)/df_population_difference_sorted.city.nunique())*100)
             city_migration_less = round((len(df_less_5000)/df_population_difference_sorted.city.nunique())*100)
-            donut_chart_greater = make_donut(city_migration_greater, '증가', 'green')
-            donut_chart_less = make_donut(city_migration_less, '감소', 'red')
+            donut_chart_greater = make_donut(city_migration_greater, '전입', 'green')
+            donut_chart_less = make_donut(city_migration_less, '전출', 'red')
         else:
             city_migration_greater = 0
             city_migration_less = 0
-            donut_chart_greater = make_donut(city_migration_greater, '증가', 'green')
-            donut_chart_less = make_donut(city_migration_less, '감소', 'red')
+            donut_chart_greater = make_donut(city_migration_greater, '전입', 'green')
+            donut_chart_less = make_donut(city_migration_less, '전출', 'red')
     
         migrations_col = st.columns((0.2, 1, 0.2))
         with migrations_col[1]:
@@ -299,11 +305,10 @@ def visualization_page():
             st.altair_chart(donut_chart_less)
 
     #6 지도시각화 및 차트맵 구현(col2)
-    
     with col[1]:
         st.markdown(f'#### {selected_year}년 {selected_category}')
         
-        choropleth = make_choropleth(df_all, 'code', 'population', selected_color_theme)
+        choropleth = make_choropleth(df_all, korea_geojson, 'population', selected_color_theme)
         st.plotly_chart(choropleth, use_container_width=True)
     
         heatmap = make_heatmap(df_reshaped[df_reshaped['category']==f'{selected_category}'], 'year', 'city', 'population', selected_color_theme)
@@ -339,7 +344,7 @@ def visualization_page():
 
 
 
-##### 인사이트 페이지
+###############3 인사이트 페이지
 def insights_page():
     st.title("📋 주요 인사이트")
     
@@ -398,7 +403,6 @@ elif page == "인사이트":
     insights_page()
 
 ###########################################################
-
 
 
 
