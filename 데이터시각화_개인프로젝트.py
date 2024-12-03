@@ -181,7 +181,7 @@ def visualization_page():
         visible=False
         )
         choropleth.update_layout(
-            template='plotly_dark',
+            
             plot_bgcolor='rgba(0, 0, 0, 0)',
             paper_bgcolor='rgba(0, 0, 0, 0)',
             margin=dict(l=0, r=0, t=0, b=0),
