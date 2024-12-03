@@ -250,7 +250,7 @@ def visualization_page():
                 strokeWidth=alt.value(0.25),
                 tooltip=[
                     alt.Tooltip('year:O',title='연도'),
-                    alt.Tooltip('population:Q',title=f'max{selected_category}'),
+                    alt.Tooltip('population:Q',title=f'max of '{selected_category}''),
                     alt.Tooltip('city:O',title='도시')
                     ]).properties(
             width=900
