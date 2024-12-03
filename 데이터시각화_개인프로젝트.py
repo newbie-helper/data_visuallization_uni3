@@ -278,12 +278,11 @@ def visualization_page():
         st.markdown('#### 변동 시도 비율')
     
         if selected_year > 2014:
-            # Filter states with population difference > 50000
-            # df_greater_50000 = df_population_difference_sorted[df_population_difference_sorted.population_difference_absolute > 50000]
+            # 변동 5000이상 지역
             df_greater_5000 = df_population_difference_sorted[df_population_difference_sorted.population_diff > 5000]
             df_less_5000 = df_population_difference_sorted[df_population_difference_sorted.population_diff < -5000]
-            
-            # % of States with population difference > 50000
+
+            #변동지역 표시
             city_migration_greater = round((len(df_greater_5000)/df_population_difference_sorted.city.nunique())*100)
             city_migration_less = round((len(df_less_5000)/df_population_difference_sorted.city.nunique())*100)
             donut_chart_greater = make_donut(city_migration_greater, '증가', 'green')
