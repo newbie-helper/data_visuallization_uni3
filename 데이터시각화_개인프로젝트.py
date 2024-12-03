@@ -249,9 +249,9 @@ def visualization_page():
                 stroke=alt.value('black'),
                 strokeWidth=alt.value(0.25),
                 tooltip=[
+                    alt.Tooltip('city:O',title='도시'),
                     alt.Tooltip('year:O',title='연도'),
-                    alt.Tooltip('population:Q',title=f'max of \'{selected_category}\''),
-                    alt.Tooltip('city:O',title='도시')
+                    alt.Tooltip('population:Q',title=f'max of \'{selected_category}\'')
                     ]).properties(
             width=900
         ).configure_legend(
