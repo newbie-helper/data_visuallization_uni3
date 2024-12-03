@@ -111,7 +111,7 @@ def main_page():
     map_fig_preview = px.choropleth_mapbox(
         df_reshaped[(df_reshaped['year'] == 2023) &(df_reshaped['category'] == '총인구수')],
         geojson=korea_geojson,
-        featureidkey='properties.BJCD',
+        featureidkey='properties.CTPRVN_CD',
         locations="code",
         color="population",
         center={"lat": 36.5, "lon": 127.8},
@@ -205,7 +205,7 @@ def visualization_page():
                                    color=input_column, 
                                    color_continuous_scale=input_color_theme,
                                    geojson=korea_geojson,
-                                   featureidkey='properties.BJCD',
+                                   featureidkey='properties.CTPRVN_CD',
                                    range_color=(0, max(df_all.population)),
                                    center = {'lat':35.9,'lon':126.98},
                                    mapbox_style='carto-darkmatter',
