@@ -172,7 +172,7 @@ def visualization_page():
                                    locations='code', 
                                    color=input_column, 
                                    color_continuous_scale=input_color_theme,
-                                   featureidkey='properties.CTPRVN_CD',
+                                   featureidkey='properties.properties.BJCD',
                                    range_color=(0, max(input_df.population)),
                                    center = {'lat':35.9,'lon':126.98},
                                    mapbox_style='carto-darkmatter',
