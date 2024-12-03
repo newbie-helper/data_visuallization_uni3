@@ -89,7 +89,7 @@ def main_page():
 ######### 시각화 페이지
 def visualization_page():
     st.sidebar.title("📈 시각화 설정")
-alt.themes.enable('dark')
+    alt.themes.enable('dark')
 
 # 함수정의
 
