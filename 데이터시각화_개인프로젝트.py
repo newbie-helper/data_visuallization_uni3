@@ -119,7 +119,7 @@ def visualization_page():
             return f'{round(num/1000000,1)} M'
         return f'{num // 1000} K'
 
-##3 도넛 함수
+##3 도넛 함수 
     def make_donut(input_response, input_text, input_color):
         if input_color == 'blue':
             chart_color = ['#29b5e8','#155F7A']
@@ -172,7 +172,6 @@ def visualization_page():
                                    locations='code', 
                                    color=input_column, 
                                    color_continuous_scale=input_color_theme,
-                                   geojson=korea_geojson,
                                    featureidkey='properties.CTPRVN_CD',
                                    range_color=(0, max(input_df.population)),
                                    center = {'lat':35.9,'lon':126.98},
