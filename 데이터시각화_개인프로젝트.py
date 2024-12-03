@@ -24,7 +24,7 @@ df_reshaped.reset_index(drop=True, inplace=True) # 인덱스 재설정
 # 행정구역을 기준으로 데이터를 쪼개서 새로운 열로 만들기
 # expand=True : 쪼개진 데이터를 새로운 열로 만들어줌
 df_reshaped[['city', 'code']] = df_reshaped['행정구역'].str.split('(', expand=True) 
-df_reshaped['code'] = df['code'].str.strip(')').str.replace('00000000', '')  # 코드에 있는 괄호 제거하고 00000000을 공백으로 변경
+df_reshaped['code'] = df_reshaped['code'].str.strip(')').str.replace('00000000', '')  # 코드에 있는 괄호 제거하고 00000000을 공백으로 변경
 df_reshaped.drop('행정구역', axis=1, inplace=True) # 행정구역 열 삭제
 
 df_reshaped = df_reshaped.melt(
