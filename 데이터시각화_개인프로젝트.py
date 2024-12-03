@@ -16,7 +16,7 @@ korea_geojson = json.load(open(url+'전국지도.json',encoding="UTF-8"))
 year_list = list(df_reshaped.year.unique())[::-1]
 category_list =list(df_reshaped.category.unique())
 
-alt.themes.enable('dark')
+
 ###############################################################
 # 사이트 이름 지정
 st.set_page_config(
@@ -89,7 +89,7 @@ def main_page():
 ######### 시각화 페이지
 def visualization_page():
     st.sidebar.title("📈 시각화 설정")
-
+alt.themes.enable('dark')
 
 # 함수정의
 
