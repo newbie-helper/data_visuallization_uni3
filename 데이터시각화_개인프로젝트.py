@@ -172,7 +172,7 @@ def visualization_page():
                                    featureidkey='properties.BJCD',
                                    range_color=(0, max(df_all.population)),
                                    center = {'lat':35.9,'lon':126.98},
-                                   mapbox_style='carto-positron',
+                                   mapbox_style='carto-darkmatter',
                                    zoom=5,
                                    opacity=0.6,
                                    labels={'population':f'{selected_category}','code':'시도코드','city':'시도명'},
