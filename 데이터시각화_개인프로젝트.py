@@ -1,5 +1,6 @@
 # c222079 /  김민수 / 배포링크 : https://hndvg5vxfubfjdpap7t92t.streamlit.app/
 
+# 라이브러리 불러오기
 import streamlit as st
 import pandas as pd
 import altair as alt
@@ -7,12 +8,47 @@ import plotly.express as px
 import json
 
 
+#######################
+# 데이터 불러오기
+df_reshaped = pd.read_csv(url+'201412_202312_korea_population_year_UTF8.csv', encoding='UTF-8') # csv 파일 불러오기
+
+korea_geojson = json.load(open(url+'gdf_korea_sido_2022.json', encoding="UTF-8")) # json 파일 불러오기
+
+#######################
+# 데이터 전처리
+df_reshaped.bfill(inplace=True) # NaN값을 아래의 값으로 채움
+df_reshaped.drop(11, inplace=True) # 11번째 행(강원자치도) 삭제
+df_reshaped.drop(0, inplace=True) # 0번째 행(전국) 삭제
+df_reshaped.reset_index(drop=True, inplace=True) # 인덱스 재설정
+
+# 행정구역을 기준으로 데이터를 쪼개서 새로운 열로 만들기
+# expand=True : 쪼개진 데이터를 새로운 열로 만들어줌
+df_reshaped[['city', 'code']] = df_reshaped['행정구역'].str.split('(', expand=True) 
+df_reshaped['code'] = df['code'].str.strip(')').str.replace('00000000', '')  # 코드에 있는 괄호 제거하고 00000000을 공백으로 변경
+df_reshaped.drop('행정구역', axis=1, inplace=True) # 행정구역 열 삭제
+
+df_reshaped = df_reshaped.melt(
+    id_vars=['city', 'code'], 
+    var_name='property', 
+    value_name='population',
+)
+
+df_reshaped[['year', 'category']] = df_reshaped['property'].str.split('년_', expand=True) # 속성을 연도와 구분으로 나누기
+df_reshaped.drop('property', axis=1, inplace=True) # 속성 열 삭제
+
+df_reshaped['population'] = df_reshaped['population'].str.replace(',', '').astype('int') # 인구수를 쉼표를 삭제한 후 정수로 변환 (문자열 -> 정수)
+df_reshaped['year'] = df_reshaped['year'].astype('int') # 연도를 정수로 변환 (문자열 -> 정수)
+
+df_reshaped = df_reshaped[['city', 'code', 'year', 'category', 'population']] # 열 순서 변경
+
+
+##################################################
 #1 인구추이 데이터 로드/ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!개인 디렉토리에 맞게 url 수정!!
-url = 'data/'
-df_reshaped = pd.read_excel(url+'2014_2023인구추이_전처리.xlsx')
+#url = 'data/'
+#df_reshaped = pd.read_excel(url+'2014_2023인구추이_전처리.xlsx')
     
 #2 korea_geojson 지도 데이터로드/ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!1!!!개인파일 이름에 맞게 지도데이터 이름 수정!!!
-korea_geojson = json.load(open(url+'전국지도.json',encoding="UTF-8"))
+#korea_geojson = json.load(open(url+'전국지도.json',encoding="UTF-8"))
 
 #3 연도 및 카테고리 리스트
 year_list = list(df_reshaped.year.unique())[::-1]
@@ -246,7 +282,7 @@ def visualization_page():
         df_all_sorted = df_all.sort_values(by='population', ascending = False)
 
         color_theme_list = ['blues', 'cividis', 'greens', 'inferno', 'magma', 'plasma', 'reds', 'rainbow', 'turbo', 'viridis']
-        selected_color_theme = st.selectbox('Select a color theme', color_theme_list)
+        selected_color_theme = st.selectbox('컬러 테마 선택', color_theme_list)
 
     #5. 인구증감, 도넛 그래프 구현(col1)
     col = st.columns((1.5, 4.5, 2), gap='medium')
