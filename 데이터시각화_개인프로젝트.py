@@ -80,7 +80,7 @@ def main_page():
         color="population",
         center={"lat": 36.5, "lon": 127.8},
         zoom=5,
-        mapbox_style="carto-positron",
+        mapbox_style="carto-darkmatter",
         color_continuous_scale="viridis",
         title="2023년 지역별 인구 분포",
         labels={'population':'총인구수','code':'시도코드','city':'시도명'},
@@ -280,21 +280,21 @@ def visualization_page():
         st.markdown('#### 변동 시도 비율')
     
         if selected_year > 2014:
-            # Filter states with population difference > 50000
+            # Filter cities with population difference > 5000
             # df_greater_50000 = df_population_difference_sorted[df_population_difference_sorted.population_difference_absolute > 50000]
             df_greater_5000 = df_population_difference_sorted[df_population_difference_sorted.population_diff > 5000]
             df_less_5000 = df_population_difference_sorted[df_population_difference_sorted.population_diff < -5000]
             
-            # % of States with population difference > 50000
+            # % of cities with population difference > 50000
             city_migration_greater = round((len(df_greater_5000)/df_population_difference_sorted.city.nunique())*100)
             city_migration_less = round((len(df_less_5000)/df_population_difference_sorted.city.nunique())*100)
-            donut_chart_greater = make_donut(city_migration_greater, '증가', 'green')
-            donut_chart_less = make_donut(city_migration_less, '감소', 'red')
+            donut_chart_greater = make_donut(city_migration_greater, '전입', 'green')
+            donut_chart_less = make_donut(city_migration_less, '전출', 'red')
         else:
             city_migration_greater = 0
             city_migration_less = 0
-            donut_chart_greater = make_donut(city_migration_greater, '증가', 'green')
-            donut_chart_less = make_donut(city_migration_less, '감소', 'red')
+            donut_chart_greater = make_donut(city_migration_greater, '전입', 'green')
+            donut_chart_less = make_donut(city_migration_less, '전출', 'red')
     
         migrations_col = st.columns((0.2, 1, 0.2))
         with migrations_col[1]:
