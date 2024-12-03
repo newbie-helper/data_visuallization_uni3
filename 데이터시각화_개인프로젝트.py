@@ -243,7 +243,7 @@ def visualization_page():
         df_all_sorted = df_all.sort_values(by='population', ascending = False)
 
         color_theme_list = ['blues', 'cividis', 'greens', 'inferno', 'magma', 'plasma', 'reds', 'rainbow', 'turbo', 'viridis']
-        selected_color_theme = st.selectbox('Select a color theme', color_theme_list)
+        selected_color_theme = st.selectbox('컬러 테마 선택택', color_theme_list)
 
     #5. 인구증감, 도넛 그래프 구현(col1)
     col = st.columns((1.5, 4.5, 2), gap='medium')
