@@ -2,7 +2,7 @@
 ## 입니다
 ![Image](https://github.com/user-attachments/assets/258a2328-d6c8-4db9-a0fe-c3ac6174c71b)
 
-!(https://www.youtube.com/watch?v=AyW6iH_oA00)
+![youtube](https://www.youtube.com/watch?v=AyW6iH_oA00)
 
 
 > 인용문 입니다
