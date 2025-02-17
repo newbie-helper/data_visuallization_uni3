@@ -1,5 +1,8 @@
 # 데이터시각화
 ## 입니다
+![Image](https://github.com/user-attachments/assets/258a2328-d6c8-4db9-a0fe-c3ac6174c71b)
+
+
 > 인용문 입니다
 > > 인용문
 1. 1
