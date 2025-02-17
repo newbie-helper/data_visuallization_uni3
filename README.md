@@ -25,9 +25,13 @@ b=2
 ```
 <code> sum = a+b </code>
 <pre><code>print(sum)</code></pre>
+
+
 ***
 분리선
 ---
+
+
 *Link1 : [github](https://git-scm.com/downloads/win)
 *Link2 : <https://git-scm.com/downloads/win>
 *Email : <asd8335@naver.com>
